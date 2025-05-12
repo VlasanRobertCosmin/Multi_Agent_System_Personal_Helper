@@ -22,6 +22,6 @@ def search_file(filename: str) -> str:
         for root, dirs, files in os.walk(folder):
             for file in files:
                 if file.lower() == filename.lower():
-                    return f"✅ Found: {os.path.join(root, file)}"
+                    return f" Found: {os.path.join(root, file)}"
     
-    return f"❌ File '{filename}' not found in Documents, Desktop, or Downloads."
+    return f" File '{filename}' not found in Documents, Desktop, or Downloads."

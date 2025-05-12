@@ -8,7 +8,7 @@ llm = Ollama(model="mistral")
 
 tools = [search_file, find_latest_file_by_extension, open_path]
 
-# ✅ Use the default tool-aware prompt and keep parsing enabled
+
 agent = initialize_agent(
     tools=tools,
     llm=llm,
@@ -19,11 +19,11 @@ agent = initialize_agent(
 
 # 💬 CLI loop
 while True:
-    user_input = input("\n🗣️ Ask your agent (or type 'exit'): ")
+    user_input = input("\n Ask your agent (or type 'exit'): ")
     if user_input.strip().lower() in {"exit", "quit"}:
         break
     try:
         response = agent.invoke(user_input)
-        print("\n🤖 Agent response:", response)
+        print("\n Agent response:", response)
     except Exception as e:
         print(f"⚠️ Error: {e}")

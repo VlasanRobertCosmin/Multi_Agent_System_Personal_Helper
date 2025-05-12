@@ -13,7 +13,7 @@ def open_path(target: str) -> str:
       - 'C:\\Users\\Robiti\\Documents\\ene.txt'
       - 'C:\\Users\\Robiti\\Downloads'
     """
-    target = target.strip().strip('"\'')  # Clean input
+    target = target.strip().strip('"\'')  
 
     # Known app shortcuts (add your own if needed)
     known_apps = {
@@ -31,9 +31,9 @@ def open_path(target: str) -> str:
         path = Path(target)
         if path.exists():
             os.startfile(str(path))
-            return f"✅ Opened {path}"
+            return f" Opened {path}"
         else:
-            return f"❌ Path not found: {path}"
+            return f" Path not found: {path}"
 
     except Exception as e:
-        return f"⚠️ Failed to open '{target}': {e}"
+        return f" Failed to open '{target}': {e}"

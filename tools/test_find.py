@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-# ✅ Set your test parameters
+
 filename_to_find = "ene.txt"
 search_folders = [
     Path.home() / "Documents",
@@ -24,8 +24,8 @@ for folder in search_folders:
     for root, dirs, files in os.walk(folder):
         for file in files:
             if file.lower() == filename_to_find.lower():
-                print(f"✅ Found: {os.path.join(root, file)}")
+                print(f" Found: {os.path.join(root, file)}")
                 found_any = True
 
 if not found_any:
-    print(f"\n❌ File '{filename_to_find}' was NOT found in the above folders.")
+    print(f"\n File '{filename_to_find}' was NOT found in the above folders.")

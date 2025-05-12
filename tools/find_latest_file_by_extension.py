@@ -12,7 +12,7 @@ def find_latest_file_by_extension(extension: str) -> str:
     extension = extension.strip().strip("'\"").lower()
 
     if not extension.startswith("."):
-        return "❌ Please provide a valid file extension (like .txt, .csv, .docx)."
+        return " Please provide a valid file extension (like .txt, .csv, .docx)."
 
     whitelist_dirs = [
         Path.home() / "Documents",
@@ -39,5 +39,5 @@ def find_latest_file_by_extension(extension: str) -> str:
                         latest_file = full_path
 
     if latest_file:
-        return f"🕓 Latest {extension} file: {latest_file} (modified {datetime.fromtimestamp(latest_time)})"
-    return f"❌ No files with extension '{extension}' found."
+        return f" Latest {extension} file: {latest_file} (modified {datetime.fromtimestamp(latest_time)})"
+    return f" No files with extension '{extension}' found."
