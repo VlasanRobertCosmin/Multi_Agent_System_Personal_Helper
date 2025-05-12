@@ -26,4 +26,4 @@ while True:
         response = agent.invoke(user_input)
         print("\n Agent response:", response)
     except Exception as e:
-        print(f"⚠️ Error: {e}")
+        print(f" Error: {e}")
