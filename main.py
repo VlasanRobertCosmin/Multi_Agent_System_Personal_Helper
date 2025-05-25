@@ -6,11 +6,13 @@ from tools.open_tool import open_path
 from tools.delete_file_tool import delete_file
 from tools.delete_file_tool import delete_file, undo_last_delete
 from langchain_ollama import OllamaLLM
+from tools.backup_file_tool import backup_file
+
 
 llm = OllamaLLM(model="mistral")
 #llm = Ollama(model="mistral")
 
-tools = [search_file, find_latest_file_by_extension, open_path,delete_file,undo_last_delete]
+tools = [search_file, find_latest_file_by_extension, open_path,delete_file,undo_last_delete,backup_file]
 
 
 agent = initialize_agent(
