@@ -1,12 +1,16 @@
 from langchain.agents import initialize_agent, AgentType
-from langchain_community.llms import Ollama
+#from langchain_community.llms import Ollama
 from tools.file_search_tool import search_file
 from tools.find_latest_file_by_extension import find_latest_file_by_extension
 from tools.open_tool import open_path
+from tools.delete_file_tool import delete_file
+from tools.delete_file_tool import delete_file, undo_last_delete
+from langchain_ollama import OllamaLLM
 
-llm = Ollama(model="mistral")
+llm = OllamaLLM(model="mistral")
+#llm = Ollama(model="mistral")
 
-tools = [search_file, find_latest_file_by_extension, open_path]
+tools = [search_file, find_latest_file_by_extension, open_path,delete_file,undo_last_delete]
 
 
 agent = initialize_agent(
@@ -17,7 +21,7 @@ agent = initialize_agent(
     handle_parsing_errors=True
 )
 
-# 💬 CLI loop
+#  CLI loop
 while True:
     user_input = input("\n Ask your agent (or type 'exit'): ")
     if user_input.strip().lower() in {"exit", "quit"}:

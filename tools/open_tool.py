@@ -45,15 +45,15 @@ def open_path(target: str) -> str:
                 expanded = os.path.expandvars(path)
                 if os.path.exists(expanded) or expanded.endswith(".exe"):
                     subprocess.Popen(expanded)
-                    return f"✅ Launched {target}"
-            return f"❌ Could not find installation for '{target}'."
+                    return f" Launched {target}"
+            return f" Could not find installation for '{target}'."
 
         # 2. If it's a path (file/folder)
         path = Path(target)
         if path.exists():
             os.startfile(str(path))
-            return f"✅ Opened {path}"
-        return f"❌ Path not found: {path}"
+            return f" Opened {path}"
+        return f" Path not found: {path}"
 
     except Exception as e:
-        return f"⚠️ Failed to open '{target}': {e}"
+        return f" Failed to open '{target}': {e}"
