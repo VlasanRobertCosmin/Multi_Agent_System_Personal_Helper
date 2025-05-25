@@ -7,12 +7,14 @@ from tools.delete_file_tool import delete_file
 from tools.delete_file_tool import delete_file, undo_last_delete
 from langchain_ollama import OllamaLLM
 from tools.backup_file_tool import backup_file
+from tools.info_tool import get_current_time, get_current_date
+
 
 
 llm = OllamaLLM(model="mistral")
 #llm = Ollama(model="mistral")
 
-tools = [search_file, find_latest_file_by_extension, open_path,delete_file,undo_last_delete,backup_file]
+tools = [search_file, find_latest_file_by_extension, open_path,delete_file,undo_last_delete,backup_file,get_current_date,get_current_time]
 
 
 agent = initialize_agent(
