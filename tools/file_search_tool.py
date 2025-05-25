@@ -4,13 +4,9 @@ from langchain_core.tools import tool
 
 @tool
 def search_file(filename: str) -> str:
-    """
-    Search for a file by name in Documents, Desktop, and Downloads folders on both C: and D: drives.
-    Input should be just the filename (e.g. 'ene.txt').
-    """
-    filename = filename.strip("'\"").lower()
-
-    whitelist_dirs = [
+   
+    filename = filename.strip().strip('"\'').lower()
+    search_dirs = [
         Path("C:/Users/Robiti/Documents"),
         Path("C:/Users/Robiti/Desktop"),
         Path("C:/Users/Robiti/Downloads"),
@@ -19,12 +15,25 @@ def search_file(filename: str) -> str:
         Path("D:/Users/Robiti/Downloads"),
     ]
 
-    for folder in whitelist_dirs:
+    found_paths = []
+
+    for folder in search_dirs:
         if not folder.exists():
             continue
         for root, dirs, files in os.walk(folder):
-            for file in files:
-                if file.lower() == filename:
-                    return f" Found: {os.path.join(root, file)}"
+            try:
+                for file in files:
+                    if file.lower() == filename:
+                        full_path = os.path.join(root, file)
+                        found_paths.append(full_path)
+            except PermissionError:
+                # Skip folders we don't have access to
+                continue
+            except Exception as e:
+                print(f"⚠️ Error scanning {root}: {e}")
+                continue
 
-    return f" File '{filename}' not found in user folders on C: or D:."
+    if found_paths:
+        return f" Found: {found_paths[0]}"  # Return first match
+    else:
+        return f"File '{filename}' not found in search directories."
