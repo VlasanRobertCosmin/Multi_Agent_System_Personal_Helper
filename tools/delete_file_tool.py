@@ -3,14 +3,14 @@ import shutil
 from pathlib import Path
 from langchain_core.tools import tool
 
-# We'll use a fixed trash folder
+#"Trash folders" paths 
 TRASH_FOLDER_C = Path("C:/Users/Robiti/.trash")
 TRASH_FOLDER_D = Path("D:/.trash")
 
 TRASH_FOLDER_C.mkdir(parents=True, exist_ok=True)
 TRASH_FOLDER_D.mkdir(parents=True, exist_ok=True)
 
-# This keeps track of the last deleted file
+# This keeps track of the last deleted file in order to restoret if you want to do that 
 last_deleted = {}
 
 @tool
@@ -47,9 +47,9 @@ def delete_file(file_path: str) -> str:
         last_deleted['original_path'] = path
         last_deleted['trash_path'] = trash_path
 
-        return f"🗑️ Moved to trash: {trash_path}\n Do you want to undo this deletion? Ask: 'Undo last delete'"
+        return f" Moved to trash: {trash_path}\n Do you want to undo this deletion? Ask: 'Undo last delete'"
     except Exception as e:
-        return f"⚠️ Failed to move file '{file_path}' to trash: {e}"
+        return f" Failed to move file '{file_path}' to trash: {e}"
 
 @tool
 def undo_last_delete(dummy_input: str) -> str:
