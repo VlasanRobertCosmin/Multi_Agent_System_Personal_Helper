@@ -8,13 +8,14 @@ from tools.delete_file_tool import delete_file, undo_last_delete
 from langchain_ollama import OllamaLLM
 from tools.backup_file_tool import backup_file
 from tools.info_tool import get_current_time, get_current_date
+from tools.create_text_file_tool import create_text_file
 
 
 
-llm = OllamaLLM(model="mistral")
+llm = OllamaLLM(model="deepseek-r1")
 #llm = Ollama(model="mistral")
 
-tools = [search_file, find_latest_file_by_extension, open_path,delete_file,undo_last_delete,backup_file,get_current_date,get_current_time]
+tools = [search_file, find_latest_file_by_extension, open_path,delete_file,undo_last_delete,backup_file,get_current_date,get_current_time,create_text_file,]
 
 
 agent = initialize_agent(
