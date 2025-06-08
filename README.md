@@ -20,13 +20,13 @@ This is a personal assistant project built using LangChain and Ollama (running a
 ### 1. Requirements
 
 * Python 3.10+
-* Ollama installed and running with a supported model (e.g., `mistral`)
+* Ollama installed and running with a supported model (e.g., `mistral`)(if you want to use another LLM model change in the main file with the model you want to use )
 * LangChain & LangChain Community libraries
 
 ### 2. Install Dependencies
 
 ```bash
-pip install langchain langchain-community langchain-ollama
+pip install -r requirements.txt
 ```
 
 ### 3. Run the Project
